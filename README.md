@@ -13,7 +13,6 @@ https://github.com/brad-anton/brand_watch
 * Possibility to run scheduled every day
 * Possibility to feed into your SOC / SIEM / TIP / ..
 
- **Please always test thoroughly before using in production!**
 Based on the brand you are monitoring, you can adjust the frequency and maximum results returned.
 
 ## Installation
