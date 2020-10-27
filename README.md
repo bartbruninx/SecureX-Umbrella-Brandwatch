@@ -1,6 +1,7 @@
 # SecureX Orchestration Workflow - Umbrella Brand Watch
 A workflow for automating the discovery of imposter domains to detect typosquatting, brandjacking or similar attacks.
-the original idea and python version:
+
+The original idea and python version:
 https://umbrella.cisco.com/blog/automating-imposter-domain-discovery
 https://github.com/brad-anton/brand_watch
 
