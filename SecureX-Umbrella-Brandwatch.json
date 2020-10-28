@@ -9,22 +9,11 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "",
+          "value": "1",
           "scope": "input",
-          "name": "brand",
+          "name": "DAYS TO SEARCH:",
           "type": "datatype.string",
-          "is_required": true
-        },
-        "unique_name": "variable_workflow_01JMKNDGSQUKK0Sc4mE5lOfOfzpoMoPLXS0",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "days",
-          "type": "datatype.string",
+          "description": "e.g.: 1",
           "is_required": true
         },
         "unique_name": "variable_workflow_01JPST5PRW96D38NkOiZdU2DYnxgDR03Iss",
@@ -35,12 +24,63 @@
         "properties": {
           "value": "",
           "scope": "input",
-          "name": "domainsToExclude",
+          "name": "WEBEX ROOM ID:",
           "type": "datatype.string",
-          "description": "example: domain1.com,domain2.com",
+          "description": "Please enter the ID of the Webex Room of where you want to send the results to.",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01JRIKQKWFSUF7C5tpYAP9k3f85r1FiqsUy",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "INVESTIGATE API KEY:",
+          "type": "datatype.secure_string",
+          "description": "Please enter your Umbrella Investigate API key.",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01JRICFJ5M9B15ptaOmIjMvvNN9N5NbFdmi",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "cisco.com",
+          "scope": "input",
+          "name": "DOMAINS TO EXCLUDE:",
+          "type": "datatype.string",
+          "description": "Exclude your known safe and non-imposter domains (comma separated), example: domain1.com,domain2.com",
           "is_required": false
         },
         "unique_name": "variable_workflow_01JPSU5EUOU170GRRIbEXSIBHowndeBbVPp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "local",
+          "name": "toExclude",
+          "type": "datatype.boolean",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01JRM0B40YHLT0G0IqxkTcsXd318hh72cYR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Cisco",
+          "scope": "input",
+          "name": "BRAND NAME: ",
+          "type": "datatype.string",
+          "description": "Please enter your brand domain. E.,g.: Cisco",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01JMKNDGSQUKK0Sc4mE5lOfOfzpoMoPLXS0",
         "object_type": "variable_workflow"
       },
       {
@@ -58,13 +98,25 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "SecureX - Umbrella Brand Watch\n#########################",
+          "value": "",
           "scope": "output",
           "name": "result",
           "type": "datatype.string",
           "is_required": false
         },
         "unique_name": "variable_workflow_01JPXNWRUWPPA6LIpczrxKp44qngzYTRLHr",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "WEBEX TEAMS API KEY:",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01JRICN4X2UC23r0oYnFL9FNKNJvfFzBgx6",
         "object_type": "variable_workflow"
       }
     ],
@@ -73,6 +125,7 @@
         "is_atomic": false
       },
       "delete_workflow_instance": false,
+      "description": "This is a workflow that can search for automating imposter domain discovery. Please enter the domain of your brand (e.g. cisco.com), and please also add the Umbrella Investigate key to do the lookup. \n\nOptionally you can add a Webex Teams API key and a Webex Room ID to send results to.\n\nIt is recommended to enable the trigger so that the workflow runs every morning at 7AM. The investigate API will be queried for the past 24 hours per default, but both the trigger and the interval can be adjusted. ",
       "display_name": "Umbrella Brand Watch",
       "runtime_user": {
         "override_target_runtime_user": false,
@@ -231,147 +284,388 @@
                 "object_type": "definition_activity"
               },
               {
-                "unique_name": "definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j",
-                "name": "For Each",
-                "title": "Loop through Domains",
-                "type": "logic.for_each",
+                "unique_name": "definition_activity_01JRIUAQQ9AVH1X5dMJPurpvvdWioY3ViIm",
+                "name": "Condition Block",
+                "title": "EXCLUSIONS ADDED?",
+                "type": "logic.if_else",
                 "base_type": "activity",
                 "properties": {
                   "continue_on_failure": false,
-                  "display_name": "Loop through Domains",
-                  "skip_execution": false,
-                  "source_array": "$activity.definition_activity_01JPVTCPXBC6V69xOpHx9EDhorn7fQZIAdW.output.read_table_from_json$"
+                  "display_name": "EXCLUSIONS ADDED?",
+                  "skip_execution": false
                 },
                 "object_type": "definition_activity",
-                "actions": [
+                "blocks": [
                   {
-                    "unique_name": "definition_activity_01JPW13816QJM2E8lOmn1bs8I3qefIDNS0g",
-                    "name": "For Each",
-                    "title": "Loop Through Exclusions",
-                    "type": "logic.for_each",
+                    "unique_name": "definition_activity_01JRIUB54GFFK3uQU1x3s4aztGxhpd4pqpM",
+                    "name": "Condition Branch",
+                    "title": "EXCLUSIONS ADDED",
+                    "type": "logic.condition_block",
                     "base_type": "activity",
                     "properties": {
+                      "condition": {
+                        "left_operand": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.input.variable_workflow_01JPSU5EUOU170GRRIbEXSIBHowndeBbVPp$",
+                        "operator": "ne",
+                        "right_operand": ""
+                      },
                       "continue_on_failure": false,
-                      "display_name": "Loop Through Exclusions",
-                      "skip_execution": false,
-                      "source_array": "$activity.definition_activity_01JPT0E8PNFDQ3dtZG8dYjDVRohwfXdGZUB.output.parts$"
+                      "display_name": "EXCLUSIONS ADDED",
+                      "skip_execution": false
                     },
                     "object_type": "definition_activity",
                     "actions": [
                       {
-                        "unique_name": "definition_activity_01JPVYQ989RUC2mL4xDFtLneWHN0ncM4GhN",
-                        "name": "Condition Block",
-                        "title": "Does Domain match Exclusion?",
-                        "type": "logic.if_else",
+                        "unique_name": "definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j",
+                        "name": "For Each",
+                        "title": "Loop through Domains",
+                        "type": "logic.for_each",
                         "base_type": "activity",
                         "properties": {
                           "continue_on_failure": false,
-                          "display_name": "Does Domain match Exclusion?",
-                          "skip_execution": false
+                          "display_name": "Loop through Domains",
+                          "skip_execution": false,
+                          "source_array": "$activity.definition_activity_01JPVTCPXBC6V69xOpHx9EDhorn7fQZIAdW.output.read_table_from_json$"
                         },
                         "object_type": "definition_activity",
-                        "blocks": [
+                        "actions": [
                           {
-                            "unique_name": "definition_activity_01JPVYQHHVIM04GUINhrBsMdrGS0DOF1q08",
-                            "name": "Condition Branch",
-                            "title": "To be excluded",
-                            "type": "logic.condition_block",
+                            "unique_name": "definition_activity_01JPW13816QJM2E8lOmn1bs8I3qefIDNS0g",
+                            "name": "For Each",
+                            "title": "Loop Through Exclusions",
+                            "type": "logic.for_each",
                             "base_type": "activity",
                             "properties": {
-                              "condition": {
-                                "left_operand": "$activity.definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j.input.source_array[@].name$",
-                                "operator": "mregex",
-                                "right_operand": ".*$activity.definition_activity_01JPW13816QJM2E8lOmn1bs8I3qefIDNS0g.input.source_array[@]$$"
-                              },
                               "continue_on_failure": false,
-                              "display_name": "To be excluded",
-                              "skip_execution": false
+                              "display_name": "Loop Through Exclusions",
+                              "skip_execution": false,
+                              "source_array": "$activity.definition_activity_01JPT0E8PNFDQ3dtZG8dYjDVRohwfXdGZUB.output.parts$"
                             },
                             "object_type": "definition_activity",
                             "actions": [
                               {
-                                "unique_name": "definition_activity_01JPW5VL6G0CU4Jei6YU1aTIpBJpRpyaRit",
-                                "name": "Continue",
-                                "title": "Continue",
-                                "type": "logic.continue",
+                                "unique_name": "definition_activity_01JPVYQ989RUC2mL4xDFtLneWHN0ncM4GhN",
+                                "name": "Condition Block",
+                                "title": "Does Domain match Exclusion?",
+                                "type": "logic.if_else",
                                 "base_type": "activity",
                                 "properties": {
                                   "continue_on_failure": false,
-                                  "display_name": "Continue",
+                                  "display_name": "Does Domain match Exclusion?",
                                   "skip_execution": false
                                 },
-                                "object_type": "definition_activity"
+                                "object_type": "definition_activity",
+                                "blocks": [
+                                  {
+                                    "unique_name": "definition_activity_01JPVYQHHVIM04GUINhrBsMdrGS0DOF1q08",
+                                    "name": "Condition Branch",
+                                    "title": "To be excluded",
+                                    "type": "logic.condition_block",
+                                    "base_type": "activity",
+                                    "properties": {
+                                      "condition": {
+                                        "left_operand": "$activity.definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j.input.source_array[@].name$",
+                                        "operator": "mregex",
+                                        "right_operand": ".*$activity.definition_activity_01JPW13816QJM2E8lOmn1bs8I3qefIDNS0g.input.source_array[@]$$"
+                                      },
+                                      "continue_on_failure": false,
+                                      "display_name": "To be excluded",
+                                      "skip_execution": false
+                                    },
+                                    "object_type": "definition_activity",
+                                    "actions": [
+                                      {
+                                        "unique_name": "definition_activity_01JRM0H4IG10A3HaszoTPkJBxiKGkHCxtoS",
+                                        "name": "Set Variables",
+                                        "title": "Domain Exclude is True",
+                                        "type": "core.set_multiple_variables",
+                                        "base_type": "activity",
+                                        "properties": {
+                                          "continue_on_failure": false,
+                                          "display_name": "Domain Exclude is True",
+                                          "skip_execution": false,
+                                          "variables_to_update": [
+                                            {
+                                              "variable_to_update": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.local.variable_workflow_01JRM0B40YHLT0G0IqxkTcsXd318hh72cYR$",
+                                              "variable_value_new": true
+                                            }
+                                          ]
+                                        },
+                                        "object_type": "definition_activity"
+                                      }
+                                    ]
+                                  }
+                                ]
                               }
                             ]
                           },
                           {
-                            "unique_name": "definition_activity_01JPWFE1B03Z56NtWzdPQ6Ufjjo4MePBMoY",
-                            "name": "Condition Branch",
-                            "title": "To be reported",
-                            "type": "logic.condition_block",
+                            "unique_name": "definition_activity_01JRLZBWGHMTV2F6EhuYxgcuqnnR0QJxmMU",
+                            "name": "Condition Block",
+                            "title": "Update Result",
+                            "type": "logic.if_else",
                             "base_type": "activity",
                             "properties": {
-                              "condition": {
-                                "left_operand": "$activity.definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j.input.source_array[@].name$",
-                                "operator": "ne",
-                                "right_operand": "\"\""
-                              },
                               "continue_on_failure": false,
-                              "display_name": "To be reported",
+                              "display_name": "Update Result",
                               "skip_execution": false
                             },
                             "object_type": "definition_activity",
-                            "actions": [
+                            "blocks": [
                               {
-                                "unique_name": "definition_activity_01JQKRSO9UMO11qVqI6N3cI7LmahG7mVU4v",
-                                "name": "Replace String",
-                                "title": "Remove Quotes",
-                                "type": "core.replacestring",
+                                "unique_name": "definition_activity_01JRLZC4LVLMN5Z8AAgvSfTJZjyzEAOE82f",
+                                "name": "Condition Branch",
+                                "title": "is Excluded",
+                                "type": "logic.condition_block",
                                 "base_type": "activity",
                                 "properties": {
+                                  "condition": {
+                                    "left_operand": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.local.variable_workflow_01JRM0B40YHLT0G0IqxkTcsXd318hh72cYR$",
+                                    "operator": "eq",
+                                    "right_operand": true
+                                  },
                                   "continue_on_failure": false,
-                                  "display_name": "Remove Quotes",
-                                  "input_string": "$activity.definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j.input.source_array[@].securityCategories$",
-                                  "replace_list": [
-                                    {
-                                      "replaced_string": "\"",
-                                      "replacement_string": ""
-                                    },
-                                    {
-                                      "replaced_string": "[",
-                                      "replacement_string": ""
-                                    },
-                                    {
-                                      "replaced_string": "]",
-                                      "replacement_string": ""
-                                    }
-                                  ],
+                                  "display_name": "is Excluded",
                                   "skip_execution": false
                                 },
-                                "object_type": "definition_activity"
+                                "object_type": "definition_activity",
+                                "actions": [
+                                  {
+                                    "unique_name": "definition_activity_01JRM19V4ESRP4MyH4nK2vlj4QX4MEVt4NR",
+                                    "name": "Set Variables",
+                                    "title": "Reset Domain Exclude",
+                                    "type": "core.set_multiple_variables",
+                                    "base_type": "activity",
+                                    "properties": {
+                                      "continue_on_failure": false,
+                                      "display_name": "Reset Domain Exclude",
+                                      "skip_execution": false,
+                                      "variables_to_update": [
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.local.variable_workflow_01JRM0B40YHLT0G0IqxkTcsXd318hh72cYR$",
+                                          "variable_value_new": false
+                                        }
+                                      ]
+                                    },
+                                    "object_type": "definition_activity"
+                                  }
+                                ]
                               },
                               {
-                                "unique_name": "definition_activity_01JPXO51SMGCV2Zz4MYenx9EcsyQVDoSu5I",
-                                "name": "Set Variables",
-                                "title": "Update Result",
-                                "type": "core.set_multiple_variables",
+                                "unique_name": "definition_activity_01JRLZC5VSLG70LbjGHPORrOAQawXRuLHue",
+                                "name": "Condition Branch",
+                                "title": "Not Excluded",
+                                "type": "logic.condition_block",
                                 "base_type": "activity",
                                 "properties": {
+                                  "condition": {
+                                    "left_operand": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.local.variable_workflow_01JRM0B40YHLT0G0IqxkTcsXd318hh72cYR$",
+                                    "operator": "eq",
+                                    "right_operand": false
+                                  },
                                   "continue_on_failure": false,
-                                  "display_name": "Update Result",
-                                  "skip_execution": false,
-                                  "variables_to_update": [
-                                    {
-                                      "variable_to_update": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.output.variable_workflow_01JPXNWRUWPPA6LIpczrxKp44qngzYTRLHr$",
-                                      "variable_value_new": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.output.variable_workflow_01JPXNWRUWPPA6LIpczrxKp44qngzYTRLHr$\n$activity.definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j.input.source_array[@].name$ - First Seen: $activity.definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j.input.source_array[@].firstSeenISO$ - Categories: $activity.definition_activity_01JQKRSO9UMO11qVqI6N3cI7LmahG7mVU4v.output.result_string$"
-                                    }
-                                  ]
+                                  "display_name": "Not Excluded",
+                                  "skip_execution": false
                                 },
-                                "object_type": "definition_activity"
+                                "object_type": "definition_activity",
+                                "actions": [
+                                  {
+                                    "unique_name": "definition_activity_01JRM2KRKHLX43sDcrnYCFXy4g8UrysHkNH",
+                                    "name": "Replace String",
+                                    "title": "Remove Quotes",
+                                    "type": "core.replacestring",
+                                    "base_type": "activity",
+                                    "properties": {
+                                      "continue_on_failure": false,
+                                      "display_name": "Remove Quotes",
+                                      "input_string": "$activity.definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j.input.source_array[@].name$",
+                                      "replace_list": [
+                                        {
+                                          "replaced_string": "\"",
+                                          "replacement_string": ""
+                                        },
+                                        {
+                                          "replaced_string": "[",
+                                          "replacement_string": ""
+                                        },
+                                        {
+                                          "replaced_string": "]",
+                                          "replacement_string": ""
+                                        }
+                                      ],
+                                      "skip_execution": false
+                                    },
+                                    "object_type": "definition_activity"
+                                  },
+                                  {
+                                    "unique_name": "definition_activity_01JRM447S0PXJ1aSXLrEqJzCrgrOBRouiOx",
+                                    "name": "Set Variables",
+                                    "title": "Update Result",
+                                    "type": "core.set_multiple_variables",
+                                    "base_type": "activity",
+                                    "properties": {
+                                      "continue_on_failure": false,
+                                      "display_name": "Update Result",
+                                      "skip_execution": false,
+                                      "variables_to_update": [
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.output.variable_workflow_01JPXNWRUWPPA6LIpczrxKp44qngzYTRLHr$",
+                                          "variable_value_new": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.output.variable_workflow_01JPXNWRUWPPA6LIpczrxKp44qngzYTRLHr$<br>$activity.definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j.input.source_array[@].name$ - First Seen: $activity.definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j.input.source_array[@].firstSeenISO$ - Categories: $activity.definition_activity_01JPVRE67R2GG0c6EWzG7Q6yB49afJNBs1j.input.source_array[@].securityCategories$<br>"
+                                        }
+                                      ]
+                                    },
+                                    "object_type": "definition_activity"
+                                  }
+                                ]
                               }
                             ]
                           }
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01JRIW8TDHK5S315pSWM4T3IkjzYbHrnSje",
+                    "name": "Condition Branch",
+                    "title": "NO EXCLUSIONS",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.input.variable_workflow_01JPSU5EUOU170GRRIbEXSIBHowndeBbVPp$",
+                        "operator": "eq",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "NO EXCLUSIONS",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01JRJ9S1MV9DO30mX8OYPDFxUSaQBv2yhWl",
+                        "name": "For Each",
+                        "title": "Loop through Domains",
+                        "type": "logic.for_each",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Loop through Domains",
+                          "skip_execution": false,
+                          "source_array": "$activity.definition_activity_01JPVTCPXBC6V69xOpHx9EDhorn7fQZIAdW.output.read_table_from_json$"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01JRIX5H2RU5M0gS937kp8YURz3S5BIhH4i",
+                            "name": "Replace String",
+                            "title": "Remove Quotes",
+                            "type": "core.replacestring",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Remove Quotes",
+                              "input_string": "$activity.definition_activity_01JRJ9S1MV9DO30mX8OYPDFxUSaQBv2yhWl.input.source_array[@].securityCategories$",
+                              "replace_list": [
+                                {
+                                  "replaced_string": "\"",
+                                  "replacement_string": ""
+                                },
+                                {
+                                  "replaced_string": "[",
+                                  "replacement_string": ""
+                                },
+                                {
+                                  "replaced_string": "]",
+                                  "replacement_string": ""
+                                }
+                              ],
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_01JRIXK9QTJZV7Vp1i7YaxQDOMw0N2P3ZDk",
+                            "name": "Set Variables",
+                            "title": "Update Result",
+                            "type": "core.set_multiple_variables",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Update Result",
+                              "skip_execution": false,
+                              "variables_to_update": [
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.output.variable_workflow_01JPXNWRUWPPA6LIpczrxKp44qngzYTRLHr$",
+                                  "variable_value_new": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.output.variable_workflow_01JPXNWRUWPPA6LIpczrxKp44qngzYTRLHr$<br>$activity.definition_activity_01JRJ9S1MV9DO30mX8OYPDFxUSaQBv2yhWl.input.source_array[@].name$ - First Seen: $activity.definition_activity_01JRJ9S1MV9DO30mX8OYPDFxUSaQBv2yhWl.input.source_array[@].firstSeenISO$ - Categories: $activity.definition_activity_01JRIX5H2RU5M0gS937kp8YURz3S5BIhH4i.output.result_string$<br>"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01JRJC924I1JV54BpvEh7zkh40NvbLlhnwQ",
+                "name": "Condition Block",
+                "title": "RESULTS?",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "RESULTS?",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01JRJC9GCVHYS7b2x4V9HCxeLzEEvSjLg0o",
+                    "name": "Condition Branch",
+                    "title": "RESULTS RETURNED",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.output.variable_workflow_01JPXNWRUWPPA6LIpczrxKp44qngzYTRLHr$",
+                        "operator": "ne",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "RESULTS RETURNED",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01JRIE57ZGXSR7lafpimzSB55WOBKzvXMjt",
+                        "name": "Webex Teams - Post Message to Room",
+                        "title": "Webex Teams - Post Message to Room",
+                        "type": "workflow.atomic_workflow",
+                        "base_type": "subworkflow",
+                        "properties": {
+                          "continue_on_failure": true,
+                          "display_name": "Webex Teams - Post Message to Room",
+                          "input": {
+                            "variable_workflow_01FGYY44G3MZ55amJu9YqgUeKS8GT49bZx3": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.input.variable_workflow_01JRICN4X2UC23r0oYnFL9FNKNJvfFzBgx6$",
+                            "variable_workflow_01FGYY44G3TK951Crpnd8g2izonyM4bFtpW": "$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.input.variable_workflow_01JRIKQKWFSUF7C5tpYAP9k3f85r1FiqsUy$",
+                            "variable_workflow_01FGYY44G3UPV3heGGc3vXCV47YL5WoI2X6": "",
+                            "variable_workflow_01FGYZ9BV4QTP19CuMwcW8QywvCP9ymx2BZ": "**The following domains were found to match $workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.input.variable_workflow_01JMKNDGSQUKK0Sc4mE5lOfOfzpoMoPLXS0$:**<br><br>$workflow.definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp.output.variable_workflow_01JPXNWRUWPPA6LIpczrxKp44qngzYTRLHr$"
+                          },
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": true,
+                            "target_id": "definition_target_01G9UGF18RL9E08ziyLuERwNvdLp5Y7JqZ1",
+                            "target_type": "web-service.endpoint"
+                          },
+                          "workflow_id": "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf"
+                        },
+                        "object_type": "definition_activity"
                       }
                     ]
                   }
@@ -436,6 +730,41 @@
       "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
     ]
   },
+  "triggers": {
+    "triggerschedule_01JRJSRUFID8Z2NyG7YjSEZpu2yT2Ym8VJ5": {
+      "workflow_id": "definition_workflow_01JMJ9DGKOUE14FuDI3iSliM1Ph7u7S60Jp",
+      "name": "Every Day",
+      "title": "",
+      "lowercase_name": "schedule.every_day",
+      "type": "schedule",
+      "base_type": "trigger",
+      "ref_id": "schedule_01JRJSN5TREBT730gJxpaNNI0ttodAs2oS1",
+      "version": "1.0.0",
+      "disabled": true,
+      "unique_name": "triggerschedule_01JRJSRUFID8Z2NyG7YjSEZpu2yT2Ym8VJ5",
+      "object_type": "triggerschedule"
+    }
+  },
+  "schedules": {
+    "schedule_01JRJSN5TREBT730gJxpaNNI0ttodAs2oS1": {
+      "unique_name": "schedule_01JRJSN5TREBT730gJxpaNNI0ttodAs2oS1",
+      "name": "Every Day",
+      "type": "basic.schedule",
+      "base_type": "schedule",
+      "properties": {
+        "calendar": "calendar_recurring_1BMfMWvgiDhSjBQ7hTSyvz3NyVZ",
+        "timezone": "Etc/GMT+0",
+        "starttime": "07:00",
+        "interval_hours": 0,
+        "interval_minutes": 0,
+        "number_of_times": 1,
+        "display_name": "Every Day",
+        "description": ""
+      },
+      "version": "1.0.0",
+      "object_type": "schedule"
+    }
+  },
   "targets": {
     "definition_target_01JMKA937I4DC5t8swpn8MTTqmqZwC7wQa1": {
       "unique_name": "definition_target_01JMKA937I4DC5t8swpn8MTTqmqZwC7wQa1",
@@ -466,5 +795,8 @@
       },
       "object_type": "variable"
     }
-  }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf"
+  ]
 }
