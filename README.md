@@ -1,3 +1,5 @@
+![License: CISCO](https://img.shields.io/badge/License-CISCO-blue.svg)
+
 # SecureX Orchestration Workflow - Umbrella Brand Watch
 A workflow for automating the discovery of imposter domains to detect typosquatting, brandjacking or similar attacks.
 
