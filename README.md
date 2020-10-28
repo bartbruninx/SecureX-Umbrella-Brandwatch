@@ -2,8 +2,9 @@
 A workflow for automating the discovery of imposter domains to detect typosquatting, brandjacking or similar attacks.
 
 The original idea and python version:
-https://umbrella.cisco.com/blog/automating-imposter-domain-discovery
-https://github.com/brad-anton/brand_watch
+
+* https://umbrella.cisco.com/blog/automating-imposter-domain-discovery
+* https://github.com/brad-anton/brand_watch
 
 
 ## Features
@@ -24,7 +25,7 @@ Based on the brand you are monitoring, you can adjust the frequency and maximum 
 
 2. Click on **IMPORT** to import the workflow.
 
-3. Click on **Browse** and copy paste the content of the json file inside of the text window. 
+3. Click on **Browse** and copy paste the content of the [json file](https://raw.githubusercontent.com/bartbruninx/SecureX-Umbrella-Brandwatch/main/SecureX-Umbrella-Brandwatch.json?token=ADSV5HSSJSG7C22KPUUI7RK7TFHBI) inside of the text window. 
 
 4. Click on **IMPORT**. 
 
