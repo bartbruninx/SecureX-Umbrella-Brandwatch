@@ -61,4 +61,4 @@ Based on the brand you are monitoring, you can adjust the frequency and maximum 
 ## Author(s)
 
 * Bart Bruninx (Cisco)
-* Christopher van der Made (Cisco) (Documentation Only)
+* Christopher van der Made (Cisco) (Documentation and Testing)
