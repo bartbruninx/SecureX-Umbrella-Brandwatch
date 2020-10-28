@@ -7,44 +7,6 @@
     "base_type": "workflow",
     "variables": [
       {
-        "schema_id": "datatype.secure_string",
-        "properties": {
-          "value": "*****",
-          "scope": "input",
-          "name": "WEBEX TEAMS API KEY:",
-          "type": "datatype.secure_string",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01JRICN4X2UC23r0oYnFL9FNKNJvfFzBgx6",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "<webex-room-id-here>",
-          "scope": "input",
-          "name": "WEBEX ROOM ID:",
-          "type": "datatype.string",
-          "description": "Please enter the ID of the Webex Room of where you want to send the results to.",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01JRIKQKWFSUF7C5tpYAP9k3f85r1FiqsUy",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "cisco.com",
-          "scope": "input",
-          "name": "BRAND DOMAIN: ",
-          "type": "datatype.string",
-          "description": "Please enter your brand domain. E.,g.: cisco.com",
-          "is_required": true
-        },
-        "unique_name": "variable_workflow_01JMKNDGSQUKK0Sc4mE5lOfOfzpoMoPLXS0",
-        "object_type": "variable_workflow"
-      },
-      {
         "schema_id": "datatype.string",
         "properties": {
           "value": "1",
@@ -60,11 +22,11 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "",
+          "value": "cisco.com",
           "scope": "input",
           "name": "DOMAINS TO EXCLUDE:",
           "type": "datatype.string",
-          "description": "example: domain1.com,domain2.com",
+          "description": "Exclude your known safe and non-imposter domains (comma separated), example: domain1.com,domain2.com",
           "is_required": false
         },
         "unique_name": "variable_workflow_01JPSU5EUOU170GRRIbEXSIBHowndeBbVPp",
@@ -105,6 +67,44 @@
           "is_required": true
         },
         "unique_name": "variable_workflow_01JRICFJ5M9B15ptaOmIjMvvNN9N5NbFdmi",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "WEBEX TEAMS API KEY:",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01JRICN4X2UC23r0oYnFL9FNKNJvfFzBgx6",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "<webex-room-id-here>",
+          "scope": "input",
+          "name": "WEBEX ROOM ID:",
+          "type": "datatype.string",
+          "description": "Please enter the ID of the Webex Room of where you want to send the results to.",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01JRIKQKWFSUF7C5tpYAP9k3f85r1FiqsUy",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Cisco",
+          "scope": "input",
+          "name": "BRAND NAME: ",
+          "type": "datatype.string",
+          "description": "Please enter your brand domain. E.,g.: Cisco",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01JMKNDGSQUKK0Sc4mE5lOfOfzpoMoPLXS0",
         "object_type": "variable_workflow"
       }
     ],
