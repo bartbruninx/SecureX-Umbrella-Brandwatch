@@ -35,7 +35,7 @@ Based on the brand you are monitoring, you can adjust the frequency and maximum 
 
 4. Click on **IMPORT**. 
 
-5. Next we need to enter some variables in order for this workflow to run proberly. You can either click on **RUN** in the top right and fill in all the variables, or you can alternatively also do that in the right global properties pane.
+5. Next we need to enter some variables in order for this workflow to run properly. You can either click on **RUN** in the top right and fill in all the variables, or you can alternatively also do that in the right global properties pane.
 
 ![](screenshots/input_vars.png)
 
