@@ -46,7 +46,9 @@ Based on the brand you are monitoring, you can adjust the frequency and maximum 
 * **Webex API Key**: please retrieve your Webex key from: https://developer.webex.com/docs/api/getting-started. Please be aware that the personal token from the getting started page only works for 12 hours. Please follow these steps to request a "bot" token: https://developer.webex.com/docs/integrations.
 * **Webex Room ID**: You can create a new space or find an existing one via these link: retrieve the Room ID from: https://developer.webex.com/docs/api/v1/rooms/list-rooms. You can also add the roomid@webex.bot bot to the room and it will send you the roomId in a private message and then remove itself from the room.
 
-9. You can also enable a trigger so that your workflow runs every day. It is recommended to enable the trigger so that the workflow runs every morning at 7AM. The investigate API will be queried for the past 24 hours per default, but both the trigger and the interval can be adjusted. 
+9. You can also enable a trigger so that your workflow runs every day. It is recommended to enable the trigger so that the workflow runs every morning at 7AM. The investigate API will be queried for the past 24 hours per default, but both the trigger and the interval can be adjusted. To enable the trigger, click on the hyperlink below and uncheck the DISABLE TRIGGER checkbox. This can be found in the workflow properties in the right menu pane. Make sure not to select an activity when looking for the global workflow properties.
+
+![](screenshots/scheduler.png)
 
 10. Finally you can now run your workflow, by clicking on **RUN** in the top right corner.
 
