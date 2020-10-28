@@ -113,7 +113,7 @@
         "is_atomic": false
       },
       "delete_workflow_instance": false,
-      "description": "This is a workflow that can search for automating imposter domain discovery. Please enter the name of your brand (e.g. Cisco), and please also add the Umbrella Investigate key to do the lookup. You can optionally exclude your own, safe, non-imposter domains separated by commas (e.g. cisco.com,mycisco.com). \n\nOptionally you can add a Webex Teams API key and a Webex Room ID to send results to.\n\nIt is recommended to enable the trigger so that the workflow runs every morning at 7AM. The investigate API will be queried for the past 24 hours per default, but both the trigger and the interval can be adjusted. ",
+      "description": "This is a workflow that can search for automating imposter domain discovery. Please enter the name of your brand (e.g. Cisco), and please also add the Umbrella Investigate key to do the lookup. You can optionally exclude your own, safe, non-imposter domains separated by commas (e.g. cisco.com,mycisco.com).\n\nOptionally you can add a Webex Teams API key and a Webex Room ID to send results to.\n\nIt is recommended to enable the trigger so that the workflow runs every morning at 7AM. The investigate API will be queried for the past 24 hours per default, but both the trigger and the interval can be adjusted. ",
       "display_name": "Umbrella Brand Watch New",
       "runtime_user": {
         "override_target_runtime_user": false,
