@@ -33,7 +33,7 @@ Based on the brand you are monitoring, you can adjust the frequency and maximum 
 
 ![](screenshots/copy-paste.png)
 
-4. Click on **IMPORT**. 
+4. Click on **IMPORT**. You will get an error, however please click on **UPDATE** to get everything sorted.
 
 5. Next we need to enter some variables in order for this workflow to run properly. You can either click on **RUN** in the top right and fill in all the variables, or you can alternatively also do that in the right global properties pane.
 
